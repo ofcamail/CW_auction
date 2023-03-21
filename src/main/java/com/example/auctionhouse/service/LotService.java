@@ -3,10 +3,8 @@ package com.example.auctionhouse.service;
 import com.example.auctionhouse.dto.CreateLot;
 import com.example.auctionhouse.dto.FullLot;
 import com.example.auctionhouse.dto.Lot;
-import com.example.auctionhouse.model.BidModel;
 import com.example.auctionhouse.model.LotModel;
 import com.example.auctionhouse.model.Status;
-import com.example.auctionhouse.repository.BidRepository;
 import com.example.auctionhouse.repository.LotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +41,7 @@ public class LotService {
 
     public Lot createLot(CreateLot lot) {
 
-        LotModel lotModel = mappingUtils.mapFromCreateLotDTO(lot);
+        LotModel lotModel = mappingUtils.mapToLotModel(lot);
 
         lotModel.setStatus(Status.CREATED);
 

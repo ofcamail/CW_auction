@@ -9,61 +9,124 @@ import com.example.auctionhouse.model.LotModel;
 import org.springframework.stereotype.Service;
 
 @Service
+
 public class MappingUtils {
+
+
+
     public FullLot mapToFullLotDTO(LotModel lotModel) {
-        FullLot dto = new FullLot();
-        dto.setId(lotModel.getId());
-        dto.setStatus(lotModel.getStatus());
-        dto.setTitle(lotModel.getTitle());
-        dto.setDescription(lotModel.getDescription());
-        dto.setStartPrice(lotModel.getStartPrice());
+
+        FullLot dto = mapToLotDTO(lotModel, new FullLot());
+
         dto.setBidPrice(lotModel.getBidPrice());
+
         return dto;
+
     }
+
+    private FullLot mapToLotDTO(LotModel lotModel, FullLot fullLot) {
+        return null;
+    }
+
 
     public BidModel mapFromBidDTO(Bid dto) {
-        BidModel bid = new BidModel();
-        bid.setBidDate(dto.getBidDate());
-        bid.setBidderName(dto.getBidderName());
-        return bid;
+
+        BidModel bidModel = new BidModel();
+
+        bidModel.setBidDate(dto.getBidDate());
+
+        bidModel.setBidderName(dto.getBidderName());
+
+        return bidModel;
+
     }
 
-    public Bid mapToBidDTO(BidModel bid) {
+
+
+    public Bid mapToBidDTO(BidModel bidModel) {
+
         Bid dto = new Bid();
-        dto.setId(bid.getId());
-        dto.setBidDate(bid.getBidDate());
-        dto.setBidderName(bid.getBidderName());
+
+        dto.setBidDate(bidModel.getBidDate());
+
+        dto.setBidderName(bidModel.getBidderName());
+
         return dto;
+
     }
+
+
 
     public Lot mapToLotDTO(LotModel lotModel) {
-        Lot dto = new Lot();
+
+        return mapToLotDTO(lotModel, new Lot());
+
+    }
+
+
+
+    private <T extends Lot> T mapToLotDTO(LotModel lotModel, T dto) {
+
         dto.setId(lotModel.getId());
+
         dto.setStatus(lotModel.getStatus());
+
         dto.setTitle(lotModel.getTitle());
+
         dto.setDescription(lotModel.getDescription());
+
         dto.setStartPrice(lotModel.getStartPrice());
-        dto.setBidPrice(lotModel.getBidPrice());
+
         return dto;
+
     }
 
-    public LotModel mapFromCreateLotDTO(CreateLot dto) {
+
+
+    public LotModel mapToLotModel(CreateLot dto) {
+
         LotModel lotModel = new LotModel();
+
         lotModel.setTitle(dto.getTitle());
+
         lotModel.setDescription(dto.getDescription());
+
         lotModel.setStartPrice(dto.getStartPrice());
+
         lotModel.setBidPrice(dto.getBidPrice());
+
         return lotModel;
+
     }
 
-    public LotModel mapFromFullLotDTO(FullLot dto) {
-        LotModel lotModel = new LotModel();
+
+
+    public LotModel mapToLotModel(Lot dto) {
+
+        LotModel lotModel = mapToLotModel(dto, new LotModel());
+
         lotModel.setId(dto.getId());
+
         lotModel.setStatus(dto.getStatus());
-        lotModel.setTitle(dto.getTitle());
-        lotModel.setDescription(dto.getDescription());
-        lotModel.setStartPrice(dto.getStartPrice());
+
         lotModel.setBidPrice(dto.getBidPrice());
+
         return lotModel;
+
     }
+
+
+
+    private <T extends LotModel> T mapToLotModel(Lot dto, T lotModel) {
+
+        lotModel.setTitle(dto.getTitle());
+
+        lotModel.setDescription(dto.getDescription());
+
+        lotModel.setStartPrice(dto.getStartPrice());
+
+        return lotModel;
+
+    }
+
 }
