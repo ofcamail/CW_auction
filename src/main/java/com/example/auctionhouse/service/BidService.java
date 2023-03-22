@@ -2,7 +2,7 @@ package com.example.auctionhouse.service;
 
 import com.example.auctionhouse.dto.Bid;
 import com.example.auctionhouse.model.BidModel;
-import com.example.auctionhouse.model.LotModel;
+import com.example.auctionhouse.projection.BidView;
 import com.example.auctionhouse.repository.BidRepository;
 import com.example.auctionhouse.repository.LotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +36,7 @@ public class BidService {
         return mappingUtils.mapToBidDTO(bidRepository.getFirstBidderInfo(lotId));
     }
 
-    public Bid getLastBidderInfo(Long lotId) {
-        return mappingUtils.mapToBidDTO(bidRepository.getLastBidderInfo(lotId));
-    }
-
-    public Integer getCountBidByLotId(Long lotId) {
-        return bidRepository.getCountBidByLotId(lotId);
+    public BidView getBidView(Long lotId) {
+        return bidRepository.getBidView(lotId);
     }
 }
